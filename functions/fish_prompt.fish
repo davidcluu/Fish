@@ -56,16 +56,27 @@ function fish_prompt
     set -g __fish_prompt_host (set_color $fish_color_host)
   end
 
-  echo -n (date +"[%T] ")
+  # user@host
+  echo -n -s "$__fish_prompt_user" "$USER" "$__fish_prompt_normal"
+  echo -n -s @
+  echo -n -s "$__fish_color_host" "$__fish_prompt_hostname" "$__fish_prompt_normal"
 
-  echo -n -s "$__fish_prompt_user" "$USER" "$__fish_prompt_normal" @ "$__fish_prompt_host" "$__fish_prompt_hostname" "$__fish_prompt_normal" ' ' "$__fish_prompt_cwd" (pwd)
+  echo -n -s " "
+
+  # current directory
+  echo -n -s "$__fish_prompt_cwd" (pwd)
+
+  # git
   echo -n -s (set_color $git_color) (__fish_git_prompt) (set_color normal)
 
   if set -q VIRTUAL_ENV
     echo -n -s (set_color $virtual_env_color) " [" (basename "$VIRTUAL_ENV") "]" (set_color normal) " "
   end
 
+  # prompt status
   echo -n -s "$__fish_prompt_normal" "$prompt_status" 
   echo
+
+  # prompt
   echo '~> '
 end
