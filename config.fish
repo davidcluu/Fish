@@ -26,13 +26,17 @@ end
 #######################
 
 # Directory movement
-alias ..="cd .."
-alias ...="cd ../.."
-alias -="cd -"
+alias ..='cd ..'
+alias ...='cd ../..'
+alias -='cd -'
 
 # ls
-alias lsa="ls -al"
+alias lsa='ls -al'
 alias lsd='ls -l | grep "^d"'
+
+# Git
+alias git-cloc='git ls-files | xargs cloc'
+aluas git-push-all='git remote | xargs -L1 git push --all'
 
 # Specific directories
 function cdprog
@@ -51,14 +55,10 @@ end
 export JAVA_HOME=(/usr/libexec/java_home)
 
 
-###########
-# CSE 135 #
-###########
+############
+# Database #
+############
 
-function cse135_startdb
+function startPostgres
   postgres -D /usr/local/var/postgres
-end
-
-function cse135_connectdb
-  psql cse135
 end
