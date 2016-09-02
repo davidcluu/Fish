@@ -36,7 +36,7 @@ alias lsd='ls -l | grep "^d"'
 
 # Git
 alias git-cloc='git ls-files | xargs cloc'
-aluas git-push-all='git remote | xargs -L1 git push --all'
+alias git-push-all='git remote | xargs -L1 git push'
 
 # Specific directories
 function cdprog
